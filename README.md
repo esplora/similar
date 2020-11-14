@@ -12,7 +12,7 @@ $ composer require tabuna/similar
 
 ## Usage
 
-You pass as input a set of rows and a minimum probability (default 51%)
+You pass as input a set of rows and a minimum probability *(default 51%)*
 
 ```php
 use Tabuna\Similar\Similar;
