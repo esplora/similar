@@ -33,7 +33,7 @@ class SimilarTest extends TestCase
             'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
 
             // Superfluous word
-            'Can Trump win with ‘fantasy’ electors bid? State GOP says no'
+            'Can Trump win with ‘fantasy’ electors bid? State GOP says no',
         ]);
 
         self::assertCount(1, $group);

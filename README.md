@@ -7,14 +7,32 @@ This is an elementary library for working on identifying similar strings in PHP 
 Run this at the command line:
 
 ```php
-
+$ composer require tabuna/similar
 ```
 
 ## Usage
 
-```php
+You pass as input a set of rows and a minimum probability (default 51%)
 
+```php
+use Tabuna\Similar\Similar;
+
+$group = Similar::build([
+    'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
+    'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
+
+    // Superfluous word
+    'Can Trump win with ‘fantasy’ electors bid? State GOP says no'
+]);
 ```
+
+As a result, there will be only one group containing headers:
+
+```php
+'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
+'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
+```
+
 
 ## License
 
