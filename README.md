@@ -1,6 +1,6 @@
 # <img src=".github/logo.svg?sanitize=true" width="24" height="24" alt="Similar PHP"> Similar
 
-This is an elementary library for working on identifying similar strings in PHP without using machine learning. It allows you to get groups of one topic from the transferred set of sentences. For example, combine news headlines from different publications, like Google News does. Want to see real use? No problem, this is just used by the Russian news aggregator https://tsmi.live
+This is an elementary library for working on identifying similar strings in PHP without using machine learning. It allows you to get groups of one topic from the transferred set of sentences. For example, combine news headlines from different publications, as Google News does. Want to see real use? No problem, this is just used by the Russian news aggregator https://tsmi.live
 
 ## Installation
 
