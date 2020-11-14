@@ -40,6 +40,22 @@ class SimilarTest extends TestCase
         self::assertCount(2, $group->first());
     }
 
+
+    public function testSaveIndex(): void
+    {
+        $group = Similar::build([
+            'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
+            'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
+
+            // Superfluous word
+            'baz' => 'Can Trump win with ‘fantasy’ electors bid? State GOP says no',
+        ])->first();
+
+        self::assertArrayHasKey('foo', $group);
+        self::assertArrayHasKey('bar', $group);
+    }
+
+
     public function testRussianSimilar(): void
     {
         $group = Similar::build([
@@ -60,5 +76,4 @@ class SimilarTest extends TestCase
         self::assertCount(5, $group->first());
         self::assertCount(4, $group->last());
     }
-
 }
