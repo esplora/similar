@@ -1,6 +1,6 @@
 # <img src=".github/logo.svg?sanitize=true" width="24" height="24" alt="Similar PHP"> Similar
 
-
+This is an elementary library for working on identifying similar strings in PHP without using machine learning.
 
 ## Installation
 
