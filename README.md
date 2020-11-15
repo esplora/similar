@@ -33,6 +33,8 @@ As a result, there will be only one group containing headers:
 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
 ```
 
+## Array keys
+
 The input array stores its keys so that you can do additional processing:
 
 ```php
@@ -57,6 +59,17 @@ The result will be two groups:
         'kos' => "Trump acknowledges Biden's win in latest tweet",
     ],
 ]
+```
+
+## Similarity percentage
+
+Terms and conditions and proposals submitted can vary greatly from project to project. What worked great for one may be worse for another. To adapt to your conditions, you can pass the second argument, the value %, which will be the similarity and unification of groups.
+
+```php
+Similar::build([
+    "Make or break approaching for EU-UK trade talks",
+    "Make or break approaching for EU-UK trade talks 2",
+], 95);
 ```
 
 
