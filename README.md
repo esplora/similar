@@ -35,7 +35,7 @@ As a result, there will be only one group containing headers:
 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
 ```
 
-## Array keys
+## Keys
 
 The input array stores its keys so that you can do additional processing:
 
