@@ -35,15 +35,6 @@ class Similar
         $this->matrix = $titles->transform(static function ($item) use ($titles, $percent) {
             return $titles->filter(static function ($title) use ($item, $percent) {
 
-                if (strlen($item) <= 255 && strlen($title) <= 255) {
-
-                    $len = levenshtein($item, $title);
-
-                    if ($len === 0 || $len / strlen($item) * 100 < 5) {
-                        return true;
-                    }
-                }
-
                 similar_text($item, $title, $copy);
 
                 return $percent < $copy;
