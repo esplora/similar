@@ -25,7 +25,7 @@ Similar::build([
 
     // Superfluous word
     'Can Trump win with ‘fantasy’ electors bid? State GOP says no',
-]);
+], 60);
 ```
 
 As a result, there will be only one group containing headers:
@@ -45,7 +45,7 @@ Similar::build([
     'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
     'baz' => 'Trump says Biden won but again refuses to concede',
     'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
-]);
+], 60);
 ```
 
 The result will be two groups:

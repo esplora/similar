@@ -35,6 +35,19 @@ class Similar
         $this->matrix = $titles->transform(static function ($item) use ($titles, $percent) {
             return $titles->filter(static function ($title) use ($item, $percent) {
 
+                if (strlen($item) <= 255 && strlen($title) <= 255) {
+
+                    $len = levenshtein($item, $title);
+
+                    if ($len === 0) {
+                        return true;
+                    }
+
+                    $percentForLevenshtein = (100 - $percent) * 0.01;
+
+                    return $len < (strlen($item) * ($percentForLevenshtein)) + (strlen($title) * ($percentForLevenshtein));
+                }
+
                 similar_text($item, $title, $copy);
 
                 return $percent < $copy;

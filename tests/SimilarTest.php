@@ -34,7 +34,7 @@ class SimilarTest extends TestCase
 
             // Superfluous word
             'Can Trump win with ‘fantasy’ electors bid? State GOP says no',
-        ]);
+        ], 60);
 
         self::assertCount(1, $group);
         self::assertCount(2, $group->first());
@@ -63,7 +63,7 @@ class SimilarTest extends TestCase
             'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
             'baz' => 'Trump says Biden won but again refuses to concede',
             'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
-        ])->toArray();
+        ], 60)->toArray();
 
         self::assertArrayHasKey('foo', $group);
         self::assertArrayHasKey('kos', $group);
@@ -88,7 +88,7 @@ class SimilarTest extends TestCase
             'Посольство России в Вашингтоне обвинило Украину во вмешательстве в дела США',
             'Посольство РФ обратило внимание Белого дома на вмешательство Украины в дела Штатов',
             'Украину обвинили во вмешательстве во внутренние дела США',
-        ]);
+        ],70);
 
         self::assertCount(5, $group->first());
         self::assertCount(4, $group->last());
