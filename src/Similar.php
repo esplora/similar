@@ -39,13 +39,9 @@ class Similar
 
                     $len = levenshtein($item, $title);
 
-                    if ($len === 0) {
+                    if ($len === 0 || $len / strlen($item) * 100 < 5) {
                         return true;
                     }
-
-                    $percentForLevenshtein = (100 - $percent) * 0.01;
-
-                    return $len < (strlen($item) * ($percentForLevenshtein)) + (strlen($title) * ($percentForLevenshtein));
                 }
 
                 similar_text($item, $title, $copy);
