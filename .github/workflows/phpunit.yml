@@ -1,6 +1,13 @@
 name: Unit tests
 
-on: [push,pull_request]
+on: 
+  # Run action on every push and PR
+  push:
+  pull_request:
+
+  # Run action at midnight to test against any updated dependencies
+  schedule:
+  - cron: '0 0 * * *'
 
 jobs:
   test:
@@ -8,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.4, 7.3]
+        php: [8.0, 7.4, 7.3]
         dependency-version: [prefer-lowest, prefer-stable]
 
     name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
