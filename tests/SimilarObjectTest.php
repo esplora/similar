@@ -51,7 +51,6 @@ class SimilarObjectTest extends TestCase
         self::assertEquals((string)$group['baz']['bar'], "Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday");
     }
 
-
     public function testSuperfluousObjectWord(): void
     {
         $group = $this->similar->findOut([
