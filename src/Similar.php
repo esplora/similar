@@ -120,7 +120,9 @@ class Similar
                 return isset($removes[$key]);
             })
             ->unique(function (Collection $item) {
-                return $item->sort()->implode('~~~');
+                return $item->map(function ($value) {
+                    return (string)$value;
+                })->sort()->implode('~~~');
             });
 
         return $this;
