@@ -14,7 +14,7 @@ $ composer require tabuna/similar
 
 ## Usage
 
-You are passing a closure function as input that determines if two strings and a set of strings are similar:
+First, we need to create an object by passing a closure function as an argument, which checks if two strings are similar:
 
 ```php
 use Tabuna\Similar\Similar;
@@ -24,7 +24,14 @@ $similar = new Similar(function (string $a, string $b) {
 
     return 51 < $copy;
 });
+```
 
+> Note that you don't need to use `similar_text`. You can use other implementations like `soundex` or something else.
+
+
+Then we have to call the `findOut` method passing it a one-dimensional array with strings:
+
+```php
 $similar->findOut([
     'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
     'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
