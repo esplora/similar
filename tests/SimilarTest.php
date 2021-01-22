@@ -23,13 +23,11 @@ class SimilarTest extends TestCase
         parent::setUp();
 
         $this->similar = new Similar(function (string $a, string $b) {
-
             similar_text($a, $b, $copy);
 
             return 51 < $copy;
         });
     }
-
 
     public function testEmptySimilar(): void
     {
@@ -68,7 +66,6 @@ class SimilarTest extends TestCase
         self::assertCount(2, $group->first());
     }
 
-
     public function testSaveIndex(): void
     {
         $group = $this->similar->findOut([
@@ -82,7 +79,6 @@ class SimilarTest extends TestCase
         self::assertArrayHasKey('foo', $group);
         self::assertArrayHasKey('bar', $group);
     }
-
 
     public function testGroupSimilar(): void
     {
@@ -99,7 +95,6 @@ class SimilarTest extends TestCase
         self::assertCount(2, $group['foo']);
         self::assertCount(2, $group['kos']);
     }
-
 
     public function testRussianSimilar(): void
     {
