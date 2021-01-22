@@ -58,11 +58,12 @@ class Similar
      */
     private function create(Collection $titles): Similar
     {
-        $this->matrix = $titles->transform(function ($item) use ($titles) {
-            return $titles->filter(function ($title) use ($item) {
+        $this->matrix = $titles->transform(function ($item, $keyItem) use ($titles) {
+            return $titles->filter(function ($title, $keyTitle) use ($item, $keyItem) {
+
                 $comparison = $this->comparison;
 
-                return $comparison($title, $item);
+                return $comparison($title, $item, $keyTitle, $keyItem);
             });
         });
 
@@ -76,9 +77,11 @@ class Similar
     {
         $this->matrix->transform(function (Collection $group) {
             return $this->matrix->map(function (Collection $simGroup) use ($group) {
+
                 return $group->intersect($simGroup)->isNotEmpty()
                     ? $group->merge($simGroup)
                     : null;
+
             })->flatten()->filter()->unique();
         });
 
@@ -94,6 +97,7 @@ class Similar
         $removes = [];
 
         $this->matrix->each(function (Collection $items, $keys) use (&$removes) {
+
             $this->matrix->each(function (Collection $collect, $keyCollect) use ($keys, $items, &$removes) {
 
                 // The block being checked is larger, then it cannot be deleted
@@ -108,7 +112,6 @@ class Similar
 
                 if ($collect->intersect($items)->isNotEmpty()) {
                     $removes[$keys][] = $keyCollect;
-
                     return;
                 }
             });
