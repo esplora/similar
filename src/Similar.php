@@ -91,39 +91,38 @@ class Similar
      */
     private function removeDuplicated(): Similar
     {
-        $removes = [];
-
-        $this->matrix->each(function (Collection $items, $keys) use (&$removes) {
-            $this->matrix->each(function (Collection $collect, $keyCollect) use ($keys, $items, &$removes) {
-
-                // The block being checked is larger, then it cannot be deleted
-                if ($items->count() < $collect->count()) {
-                    return;
-                }
-
-                // Completely identical blocks will be deleted later
-                if ($items === $collect) {
-                    return;
-                }
-
-                if ($collect->intersect($items)->isNotEmpty()) {
-                    $removes[$keys][] = $keyCollect;
-
-                    return;
-                }
-            });
-        });
-
-
         $this->matrix = $this->matrix
-            ->filter(function ($item, $key) use ($removes) {
-                return isset($removes[$key]);
+            ->filter(function (Collection $items, $keys) {
+
+                $more = $items->map(function ($value) {
+                    return (string)$value;
+                });
+
+                foreach ($this->matrix as $collect) {
+
+                    $less = $collect->map(function ($value) {
+                        return (string)$value;
+                    });
+
+                    if ($more->intersect($less)->isNotEmpty() && $more->count() < $less->count()) {
+                        return false;
+                    }
+                }
+
+                return true;
             })
             ->unique(function (Collection $item) {
-                return $item->map(function ($value) {
-                    return (string)$value;
-                })->sort()->implode('~~~');
+                return $item
+                    ->map(function ($value) {
+                        return (string)$value;
+                    })
+                    ->sort()
+                    ->implode('~~~');
+            })
+            ->filter(function (Collection $items) {
+                return $items->isNotEmpty();
             });
+
 
         return $this;
     }

@@ -62,7 +62,7 @@ class SimilarTest extends TestCase
             'Can Trump win with ‘fantasy’ electors bid? State GOP says no',
         ]);
 
-        self::assertCount(1, $group);
+        self::assertCount(2, $group);
         self::assertCount(2, $group->first());
     }
 
