@@ -93,13 +93,11 @@ class Similar
     {
         $this->matrix = $this->matrix
             ->filter(function (Collection $items, $keys) {
-
                 $more = $items->map(function ($value) {
                     return (string)$value;
                 });
 
                 foreach ($this->matrix as $collect) {
-
                     $less = $collect->map(function ($value) {
                         return (string)$value;
                     });
