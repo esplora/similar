@@ -14,7 +14,7 @@ $ composer require tabuna/similar
 
 ## Usage
 
-First, we need to create an object by passing a closure function as an argument, which checks if two strings are similar:
+We need to create an object by passing a closure function as an argument, which checks if two strings are similar:
 
 ```php
 use Tabuna\Similar\Similar;
