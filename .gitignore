@@ -4,3 +4,4 @@
 _ide_helper.php
 .phpunit.result.cache
 composer.lock
+.php_cs.cache
