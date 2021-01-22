@@ -9,26 +9,52 @@ use Tabuna\Similar\Similar;
 
 class SimilarTest extends TestCase
 {
+
+    /**
+     * @var Similar
+     */
+    protected $similar;
+
+    /**
+     *
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->similar = new Similar(function (string $a, string $b) {
+            similar_text($a, $b, $copy);
+
+            return 51 < $copy;
+        });
+    }
+
     public function testEmptySimilar(): void
     {
-        $group = Similar::build([]);
+        $group = $this->similar->findOut([]);
 
         self::assertEmpty($group);
     }
 
     public function testSameLinesSimilar(): void
     {
-        $group = Similar::build([
-            "'Make or break' approaching for EU-UK trade talks",
-            "Make or break approaching for EU-UK trade talks",
-        ], 95);
+        $group = $this->similar
+            ->comparison(function (string $a, string $b) {
+                similar_text($a, $b, $copy);
+
+                return 95 < $copy;
+            })
+            ->findOut([
+                "'Make or break' approaching for EU-UK trade talks",
+                "Make or break approaching for EU-UK trade talks",
+            ]);
 
         $this->assertCount(2, $group->first());
     }
 
     public function testSuperfluousWord(): void
     {
-        $group = Similar::build([
+        $group = $this->similar->findOut([
             'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
             'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
 
@@ -40,10 +66,9 @@ class SimilarTest extends TestCase
         self::assertCount(2, $group->first());
     }
 
-
     public function testSaveIndex(): void
     {
-        $group = Similar::build([
+        $group = $this->similar->findOut([
             'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
             'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
 
@@ -55,10 +80,9 @@ class SimilarTest extends TestCase
         self::assertArrayHasKey('bar', $group);
     }
 
-
     public function testGroupSimilar(): void
     {
-        $group = Similar::build([
+        $group = $this->similar->findOut([
             'kos' => "Trump acknowledges Biden's win in latest tweet",
             'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
             'baz' => 'Trump says Biden won but again refuses to concede',
@@ -72,10 +96,9 @@ class SimilarTest extends TestCase
         self::assertCount(2, $group['kos']);
     }
 
-
     public function testRussianSimilar(): void
     {
-        $group = Similar::build([
+        $group = $this->similar->findOut([
             // Group 1
             'Макаревич призвал принять идиотизм большинства населения как данность',
             'Макаревич назвал «идиотами» 80% населения Земли',

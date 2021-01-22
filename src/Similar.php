@@ -17,6 +17,21 @@ class Similar
     protected $matrix;
 
     /**
+     * @var callable
+     */
+    protected $comparison;
+
+    /**
+     * Similar constructor.
+     *
+     * @param callable $comparison
+     */
+    public function __construct(callable $comparison)
+    {
+        $this->comparison = $comparison;
+    }
+
+    /**
      * @return Collection
      */
     private function getMatrix(): Collection
@@ -25,19 +40,29 @@ class Similar
     }
 
     /**
-     * @param Collection $titles
-     * @param float      $percent
+     * @param callable $comparison
      *
      * @return Similar
      */
-    private function create(Collection $titles, float $percent): Similar
+    public function comparison(callable $comparison): Similar
     {
-        $this->matrix = $titles->transform(static function ($item) use ($titles, $percent) {
-            return $titles->filter(static function ($title) use ($item, $percent) {
+        $this->comparison = $comparison;
 
-                similar_text($item, $title, $copy);
+        return $this;
+    }
 
-                return $percent < $copy;
+    /**
+     * @param Collection $titles
+     *
+     * @return Similar
+     */
+    private function create(Collection $titles): Similar
+    {
+        $this->matrix = $titles->transform(function ($item) use ($titles) {
+            return $titles->filter(function ($title) use ($item) {
+                $comparison = $this->comparison;
+
+                return $comparison($title, $item);
             });
         });
 
@@ -51,11 +76,9 @@ class Similar
     {
         $this->matrix->transform(function (Collection $group) {
             return $this->matrix->map(function (Collection $simGroup) use ($group) {
-
                 return $group->intersect($simGroup)->isNotEmpty()
                     ? $group->merge($simGroup)
                     : null;
-
             })->flatten()->filter()->unique();
         });
 
@@ -71,7 +94,6 @@ class Similar
         $removes = [];
 
         $this->matrix->each(function (Collection $items, $keys) use (&$removes) {
-
             $this->matrix->each(function (Collection $collect, $keyCollect) use ($keys, $items, &$removes) {
 
                 // The block being checked is larger, then it cannot be deleted
@@ -86,6 +108,7 @@ class Similar
 
                 if ($collect->intersect($items)->isNotEmpty()) {
                     $removes[$keys][] = $keyCollect;
+
                     return;
                 }
             });
@@ -119,14 +142,12 @@ class Similar
 
     /**
      * @param array $titles
-     * @param float $percent
      *
      * @return Collection
      */
-    public static function build(array $titles, float $percent = 51): Collection
+    public function findOut(array $titles): Collection
     {
-        return (new self())
-            ->create(collect($titles), $percent)
+        return $this->create(collect($titles))
             ->merge()
             ->removeDuplicated()
             ->recoveryKeys($titles)
