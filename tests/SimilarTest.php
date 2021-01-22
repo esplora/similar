@@ -138,4 +138,26 @@ class SimilarTest extends TestCase
             ],
         ], $group);
     }
+
+    public function testObjectSimilar(): void
+    {
+        $group = $this->similar
+            ->comparison(function ($a, $b, string $keyA, string $keyB) {
+                return ($keyA === 'baz' || $keyA === 'bar') && ($keyB === 'baz' || $keyB === 'bar');
+            })
+            ->findOut([
+                'baz' => new FixtureStingObject("Trump says Biden won but again refuses to concede"),
+                'bar' => new FixtureStingObject("Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday"),
+            ])->toArray();
+
+
+        self::assertCount(1, $group);
+        self::assertCount(2, $group['baz']);
+
+        self::assertTrue(is_a($group['baz']['baz'], FixtureStingObject::class));
+        self::assertTrue(is_a($group['baz']['bar'], FixtureStingObject::class));
+
+        self::assertEquals((string) $group['baz']['baz'], "Trump says Biden won but again refuses to concede");
+        self::assertEquals((string) $group['baz']['bar'], "Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday");
+    }
 }
