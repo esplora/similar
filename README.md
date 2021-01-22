@@ -14,12 +14,18 @@ $ composer require tabuna/similar
 
 ## Usage
 
-You pass as input a set of rows and a minimum probability *(default 51%)*
+You are passing a closure function as input that determines if two strings and a set of strings are similar:
 
 ```php
 use Tabuna\Similar\Similar;
 
-Similar::build([
+$similar = new Similar(function (string $a, string $b) {
+    similar_text($a, $b, $copy);
+
+    return 51 < $copy;
+});
+
+$similar->findOut([
     'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
     'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
 
@@ -40,7 +46,7 @@ As a result, there will be only one group containing headers:
 The input array stores its keys so that you can do additional processing:
 
 ```php
-Similar::build([
+$similar->findOut([
     'kos' => "Trump acknowledges Biden's win in latest tweet",
     'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
     'baz' => 'Trump says Biden won but again refuses to concede',
@@ -60,18 +66,6 @@ The result will be two groups:
     'kos' => "Trump acknowledges Biden's win in latest tweet",
 ],
 ```
-
-## Similarity percentage
-
-Terms and conditions and proposals submitted can vary greatly from project to project. What worked great for one may be worse for another. To adapt to your conditions, you can pass the second argument, the value %, which will be the similarity and unification of groups.
-
-```php
-Similar::build([
-    "Make or break approaching for EU-UK trade talks",
-    "Make or break approaching for EU-UK trade talks 2",
-], 95);
-```
-
 
 ## License
 
