@@ -74,6 +74,17 @@ The result will be two groups:
 ],
 ```
 
+## Objects
+
+It is also possible to pass objects to evaluate more complex conditions. Each passed object must be able to cast to a string via the `__toString()` method.
+
+
+```php
+$similar->findOut([
+    new FixtureStingObject('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+]);
+```
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
