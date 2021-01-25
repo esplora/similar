@@ -54,10 +54,10 @@ The input array stores its keys so that you can do additional processing:
 
 ```php
 $similar->findOut([
-    'kos' => "Trump acknowledges Biden's win in latest tweet",
-    'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
-    'baz' => 'Trump says Biden won but again refuses to concede',
-    'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
+  'kos' => "Trump acknowledges Biden's win in latest tweet",
+  'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
+  'baz' => 'Trump says Biden won but again refuses to concede',
+  'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
 ]);
 ```
 
@@ -65,12 +65,12 @@ The result will be two groups:
 
 ```php
 [
-    'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
-    'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
+  'foo' => 'Elon Musk gets mixed COVID-19 test results as SpaceX launches astronauts to the ISS',
+  'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
 ],
 [
-    'baz' => 'Trump says Biden won but again refuses to concede',
-    'kos' => "Trump acknowledges Biden's win in latest tweet",
+  'baz' => 'Trump says Biden won but again refuses to concede',
+  'kos' => "Trump acknowledges Biden's win in latest tweet",
 ],
 ```
 
