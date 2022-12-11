@@ -9,7 +9,6 @@ use Tabuna\Similar\Similar;
 
 class SimilarObjectTest extends TestCase
 {
-
     /**
      * @var Similar
      */
