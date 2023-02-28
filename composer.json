@@ -8,16 +8,16 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "tabuna",
+            "name": "Alexandr Chernyaev",
             "email": "bliz48rus@gmail.com"
         }
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "illuminate/collections": "~8.0|~9.0"
+        "illuminate/collections": "^8.0|^9.0|^10.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^9.0|^10.0"
     },
     "autoload": {
         "psr-4": {
