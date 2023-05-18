@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Esplora\Similar\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Esplora\Similar\Similar;
+use PHPUnit\Framework\TestCase;
 
 class SimilarObjectTest extends TestCase
 {
