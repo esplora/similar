@@ -1,6 +1,6 @@
 # <img src=".github/logo.svg?sanitize=true" width="24" height="24" alt="Similar PHP"> Similar
 
-![Unit tests](https://github.com/tabuna/similar/workflows/Unit%20tests/badge.svg)
+![Unit tests](https://github.com/esplora/similar/workflows/Unit%20tests/badge.svg)
 
 This is an elementary library for working on identifying similar strings in PHP without using machine learning. It allows you to get groups of one topic from the transferred set of sentences. For example, combine news headlines from different publications, as Google News does. Want to see real use? No problem, this is just used by the real news aggregator https://tsmi.live
 
@@ -9,7 +9,7 @@ This is an elementary library for working on identifying similar strings in PHP 
 Run this at the command line:
 
 ```php
-$ composer require tabuna/similar
+$ composer require esplora/similar
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ $ composer require tabuna/similar
 We need to create an object by passing a closure function as an argument, which checks if two strings are similar:
 
 ```php
-use Tabuna\Similar\Similar;
+use Esplora\Similar\Similar;
 
 $similar = new Similar(function (string $a, string $b) {
     similar_text($a, $b, $copy);

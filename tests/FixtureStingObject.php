@@ -1,6 +1,6 @@
 <?php
 
-namespace Tabuna\Similar\Tests;
+namespace Esplora\Similar\Tests;
 
 class FixtureStingObject
 {

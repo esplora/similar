@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tabuna\Similar\Tests;
+namespace Esplora\Similar\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Tabuna\Similar\Similar;
+use Esplora\Similar\Similar;
 
 class SimilarTest extends TestCase
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tabuna\Similar;
+namespace Esplora\Similar;
 
 use Illuminate\Support\Collection;
 

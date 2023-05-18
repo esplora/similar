@@ -1,5 +1,5 @@
 {
-    "name": "tabuna/similar",
+    "name": "esplora/similar",
     "description": "Grouping almost identical strings",
     "keywords": [
         "similar"
@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Tabuna\\Similar\\": "src/"
+            "Esplora\\Similar\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tabuna\\Similar\\Tests\\": "tests/"
+            "Esplora\\Similar\\Tests\\": "tests/"
         }
     }
 }
