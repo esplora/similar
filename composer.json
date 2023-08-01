@@ -1,6 +1,6 @@
 {
     "name": "esplora/similar",
-    "description": "Grouping almost identical strings",
+    "description": "Unlock the power of effortless grouping by identifying similar strings based on shared topics within a set of sentences.",
     "keywords": [
         "similar"
     ],
