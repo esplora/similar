@@ -19,6 +19,19 @@ class FixtureStingObject
         $this->name = $name;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @return string
      */
