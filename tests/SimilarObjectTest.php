@@ -19,7 +19,12 @@ class SimilarObjectTest extends TestCase
      */
     public function setUp(): void
     {
+
+
         parent::setUp();
+
+
+
 
         $this->similar = new Similar(function (FixtureStingObject $a, FixtureStingObject $b) {
             similar_text((string)$a, (string)$b, $copy);
