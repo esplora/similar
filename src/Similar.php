@@ -86,7 +86,6 @@ class Similar
     }
 
     /**
-     *
      * @return Similar
      */
     private function removeDuplicated(): Similar
@@ -94,12 +93,12 @@ class Similar
         $this->matrix = $this->matrix
             ->filter(function (Collection $items, $keys) {
                 $more = $items->map(function ($value) {
-                    return (string)$value;
+                    return (string) $value;
                 });
 
                 foreach ($this->matrix as $collect) {
                     $less = $collect->map(function ($value) {
-                        return (string)$value;
+                        return (string) $value;
                     });
 
                     if ($more->intersect($less)->isNotEmpty() && $more->count() < $less->count()) {
@@ -112,7 +111,7 @@ class Similar
             ->unique(function (Collection $item) {
                 return $item
                     ->map(function ($value) {
-                        return (string)$value;
+                        return (string) $value;
                     })
                     ->sort()
                     ->implode('~~~');
@@ -120,7 +119,6 @@ class Similar
             ->filter(function (Collection $items) {
                 return $items->isNotEmpty();
             });
-
 
         return $this;
     }
