@@ -14,9 +14,6 @@ class SimilarTest extends TestCase
      */
     protected $similar;
 
-    /**
-     *
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -45,7 +42,7 @@ class SimilarTest extends TestCase
             })
             ->findOut([
                 "'Make or break' approaching for EU-UK trade talks",
-                "Make or break approaching for EU-UK trade talks",
+                'Make or break approaching for EU-UK trade talks',
             ]);
 
         $this->assertCount(2, $group->first());
@@ -129,11 +126,10 @@ class SimilarTest extends TestCase
                 'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
             ])->toArray();
 
-
         self::assertEquals([
             'baz' => [
-                "baz" => "Trump says Biden won but again refuses to concede",
-                "bar" => "Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday",
+                'baz' => 'Trump says Biden won but again refuses to concede',
+                'bar' => 'Elon Musk may have Covid-19, should quarantine during SpaceX astronaut launch Sunday',
             ],
         ], $group);
     }
