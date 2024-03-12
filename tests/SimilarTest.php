@@ -21,7 +21,7 @@ class SimilarTest extends TestCase
         $this->similar = new Similar(function (string $a, string $b) {
             similar_text($a, $b, $copy);
 
-            return 51 < $copy;
+            return $copy > 51;
         });
     }
 
@@ -38,7 +38,7 @@ class SimilarTest extends TestCase
             ->comparison(function (string $a, string $b) {
                 similar_text($a, $b, $copy);
 
-                return 95 < $copy;
+                return $copy > 95;
             })
             ->findOut([
                 "'Make or break' approaching for EU-UK trade talks",

@@ -22,7 +22,7 @@ class SimilarObjectTest extends TestCase
         $this->similar = new Similar(function (FixtureStingObject $a, FixtureStingObject $b) {
             similar_text((string) $a, (string) $b, $copy);
 
-            return 51 < $copy;
+            return $copy > 51;
         });
     }
 
